@@ -1,0 +1,50 @@
+body{
+    
+    background-image:url("../images/backgroundPattern2.jpg");
+    
+ }
+ .container{
+    margin-top:20px;
+    margin-bottom:20px;
+    border:solid;
+    border-color: black;
+    background-color:rgb(255, 217, 0);
+   
+  
+}
+
+.jumbotron-fluid{
+    
+    padding-top: 5%;
+    padding-bottom:20%;
+    background-size: cover;
+    text-align: center;
+    
+}
+
+ h1{
+         text-align: center;
+         padding-top: 20px;   
+         font-size: 70px;
+         width:800px;
+         padding-bottom: 20px;
+         color:blue;
+         margin-left:150px;
+         font-family: cursive;
+     }
+  
+ #start{
+ background-color: palevioletred;
+ margin-left:5px;
+ border:solid;
+ border-width: 0.1ch;
+ border-color:black;
+ width:400px;
+ text-align: center;
+ margin-top:200px;
+ height:50px;
+ font-weight: bold;
+ font-size: 30px;
+ font-family: cursive;
+
+ }
