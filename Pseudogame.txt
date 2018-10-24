@@ -1,0 +1,9 @@
+1. Create HTML page with header as Trivial Trivia Game and a div element to hold the Start button
+2. In the app.js, create an object with elements Questions,multiple choice answers per question and a variable marking the right answer,Timer element.
+3. Add below functions to the object
+a. Display question and multiple choices.Replace the button with the form containing questions and answers
+b. set timer to 30sec
+c. Get the User response and based on the response display if the answer is correct or wrong.
+e. Fetch the next question once the timer reaches 30 seconds.
+f. ONce all the questions are done, display the number of correct and wrong answers.
+g. Reset the page and restart the game.
