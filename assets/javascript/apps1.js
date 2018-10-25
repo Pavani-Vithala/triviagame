@@ -36,9 +36,9 @@ $(document).ready(function () {
         //var timerId = setInterval(countdown, 1000);
         function reset()
         { 
-        
-            clearTimeout(timerId);
+            console.log("Entered Reset Function:");       
             checkForm();
+            clearTimeout(timerId);
             timerId = setInterval(countdown,1000);
          
         }  
@@ -54,9 +54,11 @@ $(document).ready(function () {
 
         }
         
-        $("#start").on("click", function () {
+        $("#myForm").on("click", function () {
             userChoice = 1;
-            Console.log("Choice done"); 
+            var choice = document.querySelector('input[name="choices"]:checked').parentElement.textContent;;
+            console.log("The user choice is "+choice);
+            console.log("Choice done"); 
         });   
        
         
@@ -89,27 +91,20 @@ function countdown() {
 function populateForm(x) {
     console.log("Entered createForm function:");
     console.log("Question asked is:" + questions[x][0]);
-    var Option1 = questions[x][1];
+    var option1 = questions[x][1];
     var option2 = questions[x][2];
     var option3 = questions[x][3];
     var Answer = questions[x][4];
     $("#myForm").text(questions[x][0]);
     $("#myForm").append("<br>");
     $("#myForm").append("<br>");
-    $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>" + Option1 + "<br>");
+    $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>" + option1 + "<br>");
     $("#myForm").append("<input type = 'radio' name = 'choices' value = 'B'>" + option2 + "<br>");
     $("#myForm").append("<input type = 'radio' name = 'choices' value = 'C'>" + option3 + "<br>");
    // console.log($("#myForm").data(choices));
     ++counter;
     return (Answer);
 }
-
-
-
-
-
-
-
 
 
 
