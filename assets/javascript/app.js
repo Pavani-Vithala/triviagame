@@ -18,7 +18,7 @@ var questions = [["Question one?", "Option1", "Option2", "Option3", "Answer1"],
 ]
 
 $(document).ready(function () {
-
+    
     console.log("Entering main function:");
     //console.log("The question selected is "+questions[0][0]);
 
@@ -27,41 +27,42 @@ $(document).ready(function () {
         console.log("Clicked Start button:");
         $("#start").hide();
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
+        
         checkForm();
-        if(counter<questions.length)
-        {
+       
         var timerId = setInterval(countdown, 1000);
-        console.log("The timerid is"+timerid);
-        }         
-
+         
+    
+        
+        
+       // console.log("The timerid is"+timerId);
+                 
 
 function countdown() {
-    //track = 0;
-    if (intervalId == 0) {
+    
+    if (parseInt(intervalId) == 0) {
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
         clearTimeout(timerId);
-        /*track = 1;
-        if (track === 0) {
-            checkForm();
-            var timerId = setInterval(countdown, 1000);
-        } else {
-            if (track === 1 && counter < questions.length) {
-                checkForm();
-                var timerId = setInterval(countdown, 1000);
-            } else {
-                if (track === 1 && counter < questions.length) {
-                    console.log("Time to print wins:");
-                }
-            }
-        }
-        //checkForm();*/
-
-    } else {
+        checkForm();
+         timerId = setInterval(countdown, 1000);
+         }
+     else {
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
         intervalId--;
     }
-
+  //console.log("Timerid is"+timer);
 }
+function checkForm() {
+          
+        answer = populateForm(counter);
+        
+        
+        //console.log("The answer is:" + answer);
+    
+       
+        
+    }
+
 
 });
 
@@ -80,18 +81,12 @@ function populateForm(x) {
     $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>" + Option1 + "<br>");
     $("#myForm").append("<input type = 'radio' name = 'choices' value = 'B'>" + option2 + "<br>");
     $("#myForm").append("<input type = 'radio' name = 'choices' value = 'C'>" + option3 + "<br>");
-    console.log($("#myForm").val());
+    //console.log($("#myForm").val());
     counter++;
     return (Answer);
 }
 
-function checkForm() {
-    if (counter < questions.length) {
-        answer = populateForm(counter);
-        console.log("The answer is:" + answer);
 
-    }
-}
 
 
 
