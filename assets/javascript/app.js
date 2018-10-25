@@ -1,5 +1,7 @@
   var wins=0;
   var loses=0;
+  var intervalId = 30;
+  var h2 = "Time Remaining: ";
  // var score = 0;
   // JavaScript function that wraps everything
   var questions =[ ["Question one?","Option1","Option2","Option3","Answer1"],
@@ -19,17 +21,13 @@
    $("#start").on("click", function() {
        console.log("Clicked Start button:");
        $("#start").hide();
-     
-    for(var i=0;i<questions.length;i++)
-    {
-        calcTime();
-        populateForm(i);
-    }
-    //console.log("The questions to print is:"+questions[0].prompt);
-    
-   // $("#QArea").append(questions[0].prompt);
-    
-    
+       $("#timerText").text(h2 +  intervalId);
+       for(var i=0;i<1/*questions.length*/;i++)
+       {
+           console.log("Entered for loop:");
+            populateForm(i);
+            setInterval(decrement,1000); 
+       }
   });
 
 
@@ -37,15 +35,21 @@
 });
 
 
-  function calcTime()
+ /* function calcTime(time)
     {
         console.log("Entered Calc fucntion:");
-        var h2 = "Time Remaining: 28Secs";
         
-        console.log("The header 2 is"+h2);
-        $("#timerText").text(h2);
-        console.log("Have set the timer string:");
-    }
+        
+       // console.log("The interval id is"+intervalId);
+        do
+        {   
+            
+            console.log("Interval Id is do While loop is" +intervalId);
+           
+             
+        }while(intervalId >= 0) 
+        //console.log("Have set the timer string:");
+    }*/
     function populateForm(x) {
         console.log("Entered createForm function:");
         var Option1 = questions[x][1];
@@ -58,9 +62,46 @@
         $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>"+option2+"<br>");
         $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>"+option3+"<br>");
     } 
+    
+    /*function timer()
+    {
+        console.log("Entered timer function:");
+        setTimeout(decrement,2000);
 
-      
-       
+    }*/
+    
+    function decrement() {
+        
+        //  Decrease number by one.
+        console.log("entered decrement function:");
+        clearInterval(intervalId);
+        //var intervalId = 30;
+        while(parseInt(intervalId)>0)        
+        {   
+            
+            intervalId = parseInt(intervalId) - 1;
+            console.log("The value of intervalId is:" + intervalId);
+            if(parseInt(intervalId) > 0)
+            {
+                console.log("Entered if");
+                
+                $("#timerText").text(h2 +  intervalId);
+                setTimeout(decrement,10000);
+              }
+             else  
+             { 
+                $("#timerText").text(h2 +  intervalId);
+                setTimeout(decrement,10000);
+                break;
+              }
+                
+            
+        } 
+          
+        //  Show the number in the #show-number tag.
+        
+      }
+    
      
 
       
