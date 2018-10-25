@@ -3,18 +3,19 @@ var loses = 0;
 var intervalId = 30;
 var timeText1 = "Time Remaining: ";
 var timeText2 = "Seconds";
-var counter = 0;
+//var counter = 0;
 var answer;
 var track = 0;
 var userChoice = 0;
-
+var Answer = [];
+var userChoice = [];
 // var score = 0;
 // JavaScript function that wraps everything
-var questions = [["Question one?", "Option1", "Option2", "Option3", "Answer1"],
-["Question Two?", "Option1", "Option2", "Option3", "Answer2"],
-["Question Three?", "Option1", "Option2", "Option3", "Answer3"],
-["Question Four?", "Option1", "Option2", "Option3", "Answer4"],
-["Question Five?", "Option1", "Option2", "Option3", "Answer5"]
+var questions = [["What is the largest Continent?", "Asia", "Africa", "North America", "Asia"],
+["What is the biggest ocean?", "Arcitic Ocean", "Indian Ocean", "Pacific Ocean", "Pacific Ocean"],
+["When is Christmas Celebrated?", "6th August", "25th December", "30th June", "25th December"],
+["How many bones are in a human body?", "300", "350", "206", "206"],
+["What is the most colorful season?", "Winter", "Fall", "Summer", "Fall"]
 
 ]
 
@@ -29,84 +30,102 @@ $(document).ready(function () {
         $("#start").hide();
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
         
-        //checkForm();
-       
-        answer = populateForm(counter);
-        var timerId = setInterval(countdown, 1000);
-        //var timerId = setInterval(countdown, 1000);
-        function reset()
-        { 
-            console.log("Entered Reset Function:");       
-            checkForm();
-            clearTimeout(timerId);
-            timerId = setInterval(countdown,1000);
-         
-        }  
-        
-       // console.log("The timerid is"+timerId);
-       function checkForm() {
-          
-            answer = populateForm(counter);
-        
-            
-            
-        //      console.log("Time to print Wins and losses:");
-
+        for(var i=0;i<questions.length;i++)
+        {
+            Answer[i] = populateForm(i);
+            console.log(Answer[i]);
         }
+        $("#Done").show();
         
-        $("#myForm").on("click", function () {
-            userChoice = 1;
-            var choice = document.querySelector('input[name="choices"]:checked').parentElement.textContent;;
-            console.log("The user choice is "+choice);
-            console.log("Choice done"); 
-        });   
-       
+        var timerId = setInterval(countdown, 1000);
+               
+         $(".choices").on("click", function () {
+            
+            userChoice[track] = retreiveChoice();
+             
+
+            
+        });  
+        console.log("The value of track is"+track);
+        for(var i=0;i<=track;i++) 
+        console.log("The choices are"+userChoice[i]);
+    });    
         
-                   
+ function retreiveChoice()
+ {
+     var choice = "";
+     console.log("Entered retreive choice:");
+    if(document.getElementById('#Opt1').checked) {
+        choice = $("#Opt1").text;
+        console.log("User's choice is "+choice);
+        
+    }else
+    {
+        if(document.getElementById('choice').checked) {
+            choice = $("#Opt2").text;
+            console.log("User's choice is "+choice);
+    }else
+    {
+        if(document.getElementById('Opt2').checked) {
+            choice = $("#Opt3").text;
+            console.log("User's choice is "+choice);
+    }
+}
+}
+ 
+    track = track+1;
+    return(choice);
+}
 
 function countdown() {
     
-    if (parseInt(intervalId) == 0 || userChoice == 1) {
-        $("#timerText").text(timeText1 + intervalId + " " + timeText2);
+    if (parseInt(intervalId) == 0) {
+        $("#timerText").text(timeText1 + intervalId + " " + timeText2);          
+           displayResults();
         
-         reset();
-        
-        
-         //timerId = setInterval(countdown, 1000);
          }
      else {
         intervalId--;
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
         
     }
-  //console.log("Timerid is"+timer);
+  
+}
+function displayResults()
+{
+  /* for(var j =0;j<questions.length;j++)
+      {
+          userChoice[j] = retreiveChoice();
+               if(Answer[j] == userChoice[j])
+               {
+                        wins++;
+                        console.log("The wins are"+wins);
+               }else{
+                      loses++;
+                      console.log("The loses are"+loses);
+               }*/
+               console.log("Entered display function");
 }
 
 
 
-});
 
-});
 
 function populateForm(x) {
-    console.log("Entered createForm function:");
-    console.log("Question asked is:" + questions[x][0]);
+   // console.log("Entered createForm function:");
+   // console.log("Question asked is:" + questions[x][0]);
     var option1 = questions[x][1];
     var option2 = questions[x][2];
     var option3 = questions[x][3];
     var Answer = questions[x][4];
-    $("#myForm").text(questions[x][0]);
+    $("#myForm").append(questions[x][0]);
     $("#myForm").append("<br>");
-    $("#myForm").append("<br>");
-    $("#myForm").append("<input type = 'radio' name = 'choices' value = 'A'>" + option1 + "<br>");
-    $("#myForm").append("<input type = 'radio' name = 'choices' value = 'B'>" + option2 + "<br>");
-    $("#myForm").append("<input type = 'radio' name = 'choices' value = 'C'>" + option3 + "<br>");
+    //$("#myForm").append("<br>");
+    $("#myForm").append("<input type = 'radio' id='Opt1' class = 'choice'"+x+" value = 'A'>" + option1+" ");
+    $("#myForm").append("<input type = 'radio' id='Opt2' class = 'choice'"+x+" value = 'A'>" + option2+ " ");
+    $("#myForm").append("<input type = 'radio' id='Opt3' class = 'choice'"+x+" value = 'A'>" + option3 +"<br>"+"<br>");
    // console.log($("#myForm").data(choices));
-    ++counter;
-    return (Answer);
+    //++counter;
+   return (Answer);
 }
-
-
-
-
-
+}); 

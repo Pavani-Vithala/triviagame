@@ -16,7 +16,7 @@ body{
 .jumbotron-fluid{
     
     padding-top: 5%;
-    padding-bottom:20%;
+    padding-bottom:40%;
     background-size: cover;
     text-align: center;
     
@@ -52,4 +52,21 @@ body{
  {
     font-size: 30px;
      font-family: cursive;
+     
+ }
+ #Done
+ {
+    background-color: palevioletred;
+    margin-left:5px;
+    border:solid;
+    border-width: 0.1ch;
+    border-color:black;
+    width:400px;
+    text-align: center;
+    margin-top:200px;
+    height:50px;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: cursive;
+    display:none;
  }
