@@ -4,13 +4,10 @@ var unAnswered = 0;
 var intervalId = 30;
 var timeText1 = "Time Remaining: ";
 var timeText2 = "Seconds";
-var answer;
 var track = 0;
-var userChoice = 0;
 var Answer = [];
 var userChoice = [];
-// var score = 0;
-// JavaScript function that wraps everything
+
 var questions = [["What is the largest Continent?", "Asia", "Africa", "North America", "Asia"],
 ["What is the biggest ocean?", "Arcitic Ocean", "Indian Ocean", "Pacific Ocean", "Pacific Ocean"],
 ["When is Christmas Celebrated?", "6th August", "25th December", "30th June", "25th December"],
@@ -22,8 +19,6 @@ var questions = [["What is the largest Continent?", "Asia", "Africa", "North Ame
 $(document).ready(function () {
 
     $("#start").on("click", function () {
-        console.log("Clicked Start button:");
-        console.log("The value of track before clicking Done is" + track);
         $("#start").hide();
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
 
@@ -37,7 +32,7 @@ $(document).ready(function () {
         var timerId = setInterval(countdown, 1000);
 
         $("#Done").on("click", function () {
-            console.log("Clicked Done button");
+            
             track = 1;
         });
 
@@ -71,24 +66,21 @@ $(document).ready(function () {
             for (var j = 0; j < questions.length; j++) {
                 if (!$('input[name=choice' + j + ']:checked').val()) {
                     bool = 1;
-                    
+
                 }
                 userChoice[j] = $('input[name=choice' + j + ']:checked').attr('value');
-                console.log("The selected value is" + userChoice[j]);
+                
                 if (Answer[j] == userChoice[j]) {
                     correctAnswers++;
-                }else{
-                    if(bool == 1)
-                    {
+                } else {
+                    if (bool == 1) {
                         unAnswered++;
                     }
                     else
-                     incorrectAnswers++;
+                        incorrectAnswers++;
                 }
-                //incorrectAnswers = incorrectAnswers - unAnswered;
-
-
-                // unAnswered = questions.length - (correctAnswers + incorrectAnswers);
+              
+               
                 $("#QArea  ").append("<br>" + "<br>" + "<br>");
                 $("#QArea").text(str)
                 $("#QArea").append("<br>");
@@ -99,25 +91,20 @@ $(document).ready(function () {
         }
 
 
-        });
+    });
 
 
     function populateForm(x) {
-        // console.log("Entered createForm function:");
-        // console.log("Question asked is:" + questions[x][0]);
+       
         var option1 = questions[x][1];
         var option2 = questions[x][2];
         var option3 = questions[x][3];
         var Answer = questions[x][4];
-        $("#myForm").append(questions[x][0]);
+        $("#myForm").append("<strong>"+questions[x][0]+"</strong>");
         $("#myForm").append("<br>");
-        //$("#myForm").append("<br>");
-
-
-        $("#myForm").append("<input type='radio' id='Opt1" + x + "' name='choice" + x + "' value='" + option1 + "'>" + option1 + "</input>");
-        $("#myForm").append("<input type='radio' id='Opt2" + x + "' name='choice" + x + "' value='" + option2 + "'>" + option2 + "</input>");
-        $("#myForm").append("<input type='radio' id='Opt3" + x + "' name='choice" + x + "' value='" + option3 + "'>" + option3 + "</input>" + "<br>" + "<br>");
-
+        $("#myForm").append("<input type='radio' id='Opt1" + x + "' name='choice" + x + "' value='" + option1 + "'>" + option1 +"</input>");
+        $("#myForm").append("<input type='radio' id='Opt2" + x + "' name='choice" + x + "' value='" + option2 + "'>" +   option2    +"</input>");
+        $("#myForm").append("<input type='radio' id='Opt3" + x + "' name='choice" + x + "' value='" + option3 + "'>" +   option3    +"</input>" + "<br>" + "<br>");
         return (Answer);
     }
 }); 
