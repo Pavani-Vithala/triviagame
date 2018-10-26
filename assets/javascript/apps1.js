@@ -1,9 +1,9 @@
-var wins = 0;
-var loses = 0;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
+var unAnswered = 0;
 var intervalId = 30;
 var timeText1 = "Time Remaining: ";
 var timeText2 = "Seconds";
-//var counter = 0;
 var answer;
 var track = 0;
 var userChoice = 0;
@@ -27,6 +27,7 @@ $(document).ready(function () {
 
     $("#start").on("click", function () {
         console.log("Clicked Start button:");
+        console.log("The value of track before clicking Done is"+track);
         $("#start").hide();
         $("#timerText").text(timeText1 + intervalId + " " + timeText2);
         
@@ -36,22 +37,20 @@ $(document).ready(function () {
             console.log(Answer[i]);
         }
         $("#Done").show();
+        $("#myform").append("$(#Done)");
         
         var timerId = setInterval(countdown, 1000);
                
-         $(".choices").on("click", function () {
-            
-            userChoice[track] = retreiveChoice();
-             
+   
+    
+    $("#Done").on("click", function () {
+        console.log("Clicked Done button");
+        track = 1;
+        console.log("The value of track after clicking Done is"+track);
 
-            
-        });  
-        console.log("The value of track is"+track);
-        for(var i=0;i<=track;i++) 
-        console.log("The choices are"+userChoice[i]);
+
     });    
-        
- function retreiveChoice()
+/* function retreiveChoice()
  {
      var choice = "";
      console.log("Entered retreive choice:");
@@ -75,13 +74,23 @@ $(document).ready(function () {
  
     track = track+1;
     return(choice);
-}
+}*/
+
 
 function countdown() {
     
-    if (parseInt(intervalId) == 0) {
-        $("#timerText").text(timeText1 + intervalId + " " + timeText2);          
+    if (parseInt(intervalId) == 0 || track == 1) {
+        $("#myForm").hide();
+        $("#Done").hide();
+        var str = "All Done!";
+        $("#QArea").text(str)
+        $("#QArea").append("<br>");
+        clearInterval(timerId);
            displayResults();
+           //$("#QArea").text = " ";
+           $("#QArea").append("Correct Answers: "+correctAnswers+"<br>");
+           $("#QArea").append("Incorrect Answers: "+incorrectAnswers+"<br>");
+           $("#QArea").append("Unanswered Questions: "+unAnswered);
         
          }
      else {
@@ -91,8 +100,14 @@ function countdown() {
     }
   
 }
+
+}); 
 function displayResults()
 {
+
+    correctAnswers = 4;
+    incorrectAnswers = 1;
+    unAnswered = 0;
   /* for(var j =0;j<questions.length;j++)
       {
           userChoice[j] = retreiveChoice();
