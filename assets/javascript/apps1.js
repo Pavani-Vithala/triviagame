@@ -50,31 +50,7 @@ $(document).ready(function () {
 
 
     });    
-/* function retreiveChoice()
- {
-     var choice = "";
-     console.log("Entered retreive choice:");
-    if(document.getElementById('#Opt1').checked) {
-        choice = $("#Opt1").text;
-        console.log("User's choice is "+choice);
-        
-    }else
-    {
-        if(document.getElementById('choice').checked) {
-            choice = $("#Opt2").text;
-            console.log("User's choice is "+choice);
-    }else
-    {
-        if(document.getElementById('Opt2').checked) {
-            choice = $("#Opt3").text;
-            console.log("User's choice is "+choice);
-    }
-}
-}
  
-    track = track+1;
-    return(choice);
-}*/
 
 
 function countdown() {
@@ -88,10 +64,7 @@ function countdown() {
         clearInterval(timerId);
            displayResults();
            //$("#QArea").text = " ";
-           $("#QArea").append("Correct Answers: "+correctAnswers+"<br>");
-           $("#QArea").append("Incorrect Answers: "+incorrectAnswers+"<br>");
-           $("#QArea").append("Unanswered Questions: "+unAnswered);
-        
+           
          }
      else {
         intervalId--;
@@ -101,29 +74,29 @@ function countdown() {
   
 }
 
-}); 
+ 
 function displayResults()
-{
+{   
+    console.log("Entered DisplayResults function:"); 
+    var choice="";
+        for (var j =0;j<questions.length;j++)
+        {
+            console.log("Entered for loop");
+            if($("#Opt"+i).checked)
+            {
+                choice = $("#Opt"+i).val();
+                console.log("The choice of the user is"+choice);
+            }
+   
+        }
+    $("#QArea").append("Correct Answers: "+correctAnswers+"<br>");
+    $("#QArea").append("Incorrect Answers: "+incorrectAnswers+"<br>");
+    $("#QArea").append("Unanswered Questions: "+unAnswered);
+}      
+  
 
-    correctAnswers = 4;
-    incorrectAnswers = 1;
-    unAnswered = 0;
-  /* for(var j =0;j<questions.length;j++)
-      {
-          userChoice[j] = retreiveChoice();
-               if(Answer[j] == userChoice[j])
-               {
-                        wins++;
-                        console.log("The wins are"+wins);
-               }else{
-                      loses++;
-                      console.log("The loses are"+loses);
-               }*/
-               console.log("Entered display function");
-}
 
-
-
+});
 
 
 function populateForm(x) {
@@ -136,10 +109,10 @@ function populateForm(x) {
     $("#myForm").append(questions[x][0]);
     $("#myForm").append("<br>");
     //$("#myForm").append("<br>");
-    $("#myForm").append("<input type = 'radio' id='Opt1' class = 'choice'"+x+" value = 'A'>" + option1+" ");
-    $("#myForm").append("<input type = 'radio' id='Opt2' class = 'choice'"+x+" value = 'A'>" + option2+ " ");
-    $("#myForm").append("<input type = 'radio' id='Opt3' class = 'choice'"+x+" value = 'A'>" + option3 +"<br>"+"<br>");
-   // console.log($("#myForm").data(choices));
+    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option1+" ");
+    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option2+ " ");
+    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option3 +"<br>"+"<br>");
+    console.log($("#Opt"+x).text());
     //++counter;
    return (Answer);
 }
