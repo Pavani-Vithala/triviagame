@@ -46,9 +46,13 @@ $(document).ready(function () {
     $("#Done").on("click", function () {
         console.log("Clicked Done button");
         track = 1;
+       // var m = 0;
         console.log("The value of track after clicking Done is"+track);
+        var selValue = $('input[name=choice1]:checked').attr('id');
+        var choice = $("#selValue").val();
 
-
+        console.log("The clicked button is "+selValue);
+        console.log("The clicked button text is "+choice);
     });    
  
 
@@ -63,8 +67,7 @@ function countdown() {
         $("#QArea").append("<br>");
         clearInterval(timerId);
            displayResults();
-           //$("#QArea").text = " ";
-           
+                      
          }
      else {
         intervalId--;
@@ -82,9 +85,9 @@ function displayResults()
         for (var j =0;j<questions.length;j++)
         {
             console.log("Entered for loop");
-            if($("#Opt"+i).checked)
+            if($("#Opt"+"j").checked)
             {
-                choice = $("#Opt"+i).val();
+                choice = $("#Opt"+"j").val();
                 console.log("The choice of the user is"+choice);
             }
    
@@ -109,10 +112,17 @@ function populateForm(x) {
     $("#myForm").append(questions[x][0]);
     $("#myForm").append("<br>");
     //$("#myForm").append("<br>");
-    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option1+" ");
-    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option2+ " ");
-    $("#myForm").append("<input type = 'radio' id='Opt'"+x+" class = 'choice'"+x+" value = 'A'>" + option3 +"<br>"+"<br>");
-    console.log($("#Opt"+x).text());
+    
+    
+    $("#myForm").append("<input type='radio' id='Opt1'" + x + " name='choice'" + x + " value='A'>" + option1 + "</input>");
+    $("#myForm").append("<input type='radio' id='Opt2'" + x + " name='choice'" + x + " value='B'>" + option2 + "</input>");
+    $("#myForm").append("<input type='radio' id='Opt3'" + x + " name='choice'" + x + " value='C'>" + option3 + "</input>"+"<br>"+"<br>");
+
+    console.log("The value of x is "+x);
+    console.log("The text of the first button is:"+ $("#Opt1"+x).text());
+    console.log("The text of the second button is:"+ $("#Opt2"+x).text());
+    console.log("The text of the third button is:"+ $("#Opt3"+x).text());
+   
     //++counter;
    return (Answer);
 }
